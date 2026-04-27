@@ -1,0 +1,1809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DSBDA God-Level Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f7f8fc;
+  --white: #ffffff;
+  --dark: #1a1d2e;
+  --text: #2d3250;
+  --muted: #6b7280;
+  --border: #e5e8f0;
+
+  --p1: #4361ee; --p1l: #eef1ff; --p1m: #c7d0ff;
+  --p2: #7c3aed; --p2l: #f3f0ff; --p2m: #ddd6fe;
+  --p3: #059669; --p3l: #ecfdf5; --p3m: #a7f3d0;
+  --p4: #d97706; --p4l: #fffbeb; --p4m: #fde68a;
+  --p5: #db2777; --p5l: #fdf2f8; --p5m: #fbcfe8;
+
+  --code-bg: #1e2235;
+  --code-text: #e2e8f0;
+  --kw: #c084fc;
+  --fn: #60a5fa;
+  --st: #4ade80;
+  --cm: #6b7a99;
+  --nm: #fb923c;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Nunito', sans-serif;
+  line-height: 1.75;
+  font-size: 16px;
+}
+
+/* ── HERO ── */
+.hero {
+  background: var(--dark);
+  padding: 56px 40px 60px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(circle at 20% 50%, rgba(67,97,238,0.25) 0%, transparent 55%),
+    radial-gradient(circle at 80% 30%, rgba(124,58,237,0.2) 0%, transparent 50%),
+    radial-gradient(circle at 60% 80%, rgba(219,39,119,0.15) 0%, transparent 45%);
+}
+.hero-inner { position: relative; z-index: 1; max-width: 750px; margin: 0 auto; }
+.hero-emoji { font-size: 3.5rem; display: block; margin-bottom: 16px; animation: bounce 2s infinite; }
+@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+.hero h1 span { color: #a5b4fc; }
+.hero p { color: #94a3b8; font-size: 1.1rem; font-weight: 600; }
+.pill-row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
+.pill {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #e2e8f0;
+  padding: 5px 16px;
+  border-radius: 100px;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+/* ── LAYOUT ── */
+.layout { display: flex; max-width: 1240px; margin: 0 auto; }
+
+/* ── SIDEBAR ── */
+.sidebar {
+  width: 250px;
+  flex-shrink: 0;
+  padding: 28px 16px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  background: var(--white);
+  border-right: 2px solid var(--border);
+}
+.sidebar-label {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 0 8px;
+  margin-bottom: 10px;
+}
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--muted);
+  font-weight: 700;
+  font-size: 0.88rem;
+  margin-bottom: 4px;
+  transition: all 0.18s;
+  border: 2px solid transparent;
+}
+.nav-link:hover { background: var(--bg); color: var(--text); }
+.nav-link.active { color: #fff; border-color: transparent; }
+.nav-icon { font-size: 1.1rem; }
+
+/* ── MAIN ── */
+.main { flex: 1; padding: 44px 48px; min-width: 0; }
+
+/* ── PRACTICAL CARD ── */
+.prac { margin-bottom: 80px; scroll-margin-top: 20px; }
+
+/* Objective banner */
+.obj-banner {
+  border-radius: 20px;
+  padding: 28px 32px;
+  margin-bottom: 30px;
+  position: relative;
+  overflow: hidden;
+}
+.obj-banner::after {
+  content: attr(data-emoji);
+  position: absolute;
+  right: 24px; top: 50%;
+  transform: translateY(-50%);
+  font-size: 5rem;
+  opacity: 0.15;
+}
+.obj-banner .prac-num {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  opacity: 0.7;
+}
+.obj-banner h2 { font-size: 1.6rem; font-weight: 900; margin-bottom: 6px; }
+.obj-banner .tagline { font-size: 0.95rem; font-weight: 600; opacity: 0.75; margin-bottom: 16px; }
+.obj-box {
+  background: rgba(255,255,255,0.55);
+  border-radius: 12px;
+  padding: 16px 20px;
+}
+.obj-box .obj-title {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  opacity: 0.6;
+}
+.obj-box p { font-size: 0.95rem; font-weight: 600; line-height: 1.65; }
+
+/* Road map */
+.roadmap {
+  display: flex;
+  gap: 0;
+  margin-bottom: 30px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+.rm-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  min-width: 100px;
+  position: relative;
+}
+.rm-step:not(:last-child)::after {
+  content: '→';
+  position: absolute;
+  right: -12px;
+  top: 18px;
+  font-size: 1.1rem;
+  color: var(--muted);
+  z-index: 1;
+}
+.rm-circle {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 900;
+  font-size: 0.9rem;
+  margin-bottom: 6px;
+  border: 3px solid;
+}
+.rm-label { font-size: 0.72rem; font-weight: 800; text-align: center; color: var(--muted); }
+
+/* Section header */
+.sec-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 30px 0 14px;
+}
+.sec-badge {
+  padding: 4px 14px;
+  border-radius: 100px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.sec-title { font-size: 1.1rem; font-weight: 800; }
+
+/* WHY box */
+.why-box {
+  border-radius: 14px;
+  padding: 18px 22px;
+  margin-bottom: 16px;
+  border: 2px solid;
+  display: flex;
+  gap: 14px;
+}
+.why-icon { font-size: 1.6rem; flex-shrink: 0; }
+.why-content {}
+.why-content strong { font-size: 0.85rem; display: block; margin-bottom: 4px; }
+.why-content p { font-size: 0.9rem; color: var(--muted); font-weight: 600; }
+.why-content p b { color: var(--text); }
+
+/* Code block */
+.code-wrap { margin-bottom: 6px; }
+.code-top {
+  background: #2a2f45;
+  border-radius: 14px 14px 0 0;
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.code-dots { display: flex; gap: 6px; }
+.code-dots span { width: 11px; height: 11px; border-radius: 50%; display: block; }
+.code-purpose {
+  font-size: 0.73rem;
+  font-weight: 700;
+  color: #64748b;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+pre {
+  background: var(--code-bg);
+  padding: 20px 22px;
+  border-radius: 0;
+  overflow-x: auto;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.86rem;
+  line-height: 2;
+  color: var(--code-text);
+}
+.kw { color: var(--kw); }
+.fn { color: var(--fn); }
+.st { color: var(--st); }
+.cm { color: var(--cm); font-style: italic; }
+.nm { color: var(--nm); }
+.hl { background: rgba(255,255,255,0.07); display: block; border-left: 3px solid #60a5fa; padding-left: 6px; }
+
+/* Explain table */
+.explain-table {
+  background: var(--white);
+  border: 2px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 14px 14px;
+  margin-bottom: 22px;
+  overflow: hidden;
+}
+.explain-row {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  border-bottom: 1px solid var(--border);
+}
+.explain-row:last-child { border-bottom: none; }
+.explain-code {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 13px 16px;
+  background: #f8f9ff;
+  border-right: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  word-break: break-all;
+}
+.explain-text {
+  padding: 13px 18px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+}
+.explain-text b { color: var(--text); }
+.explain-text .emoji { margin-right: 6px; }
+
+/* Analogy card */
+.analogy {
+  display: flex;
+  gap: 14px;
+  background: #fffbeb;
+  border: 2px solid #fde68a;
+  border-radius: 14px;
+  padding: 16px 20px;
+  margin-bottom: 18px;
+}
+.analogy-icon { font-size: 1.8rem; flex-shrink: 0; }
+.analogy-text { font-size: 0.9rem; font-weight: 600; color: #78350f; }
+.analogy-text b { color: #92400e; }
+
+/* Output box */
+.output {
+  background: #0f172a;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.84rem;
+  color: #4ade80;
+  line-height: 1.9;
+}
+.output-lbl {
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #475569;
+  margin-bottom: 8px;
+}
+
+/* Formula grid */
+.fml-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.fml-card {
+  border-radius: 14px;
+  padding: 16px;
+  border: 2px solid;
+}
+.fml-name { font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+.fml-eq {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.8rem;
+  background: rgba(0,0,0,0.06);
+  padding: 6px 10px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+.fml-desc { font-size: 0.82rem; font-weight: 600; color: var(--muted); }
+
+/* Confusion matrix */
+.cm-wrap { overflow-x: auto; margin-bottom: 20px; }
+table.cm { border-collapse: collapse; min-width: 420px; }
+.cm th, .cm td { border: 2px solid var(--border); padding: 14px 20px; text-align: center; font-weight: 700; }
+.cm th { background: #f1f5f9; font-size: 0.82rem; color: var(--muted); }
+.cm .tp { background: #dcfce7; color: #166534; }
+.cm .tn { background: #dbeafe; color: #1e40af; }
+.cm .fp { background: #ffedd5; color: #9a3412; }
+.cm .fn { background: #fce7f3; color: #9d174d; }
+
+/* Step cards */
+.steps { display: flex; flex-direction: column; gap: 0; margin-bottom: 14px; }
+.step-card {
+  display: flex;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px dashed var(--border);
+}
+.step-card:last-child { border-bottom: none; }
+.step-num {
+  width: 32px; height: 32px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 900;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.step-body strong { font-size: 0.95rem; display: block; margin-bottom: 3px; }
+.step-body p { font-size: 0.88rem; font-weight: 600; color: var(--muted); }
+
+/* Divider */
+.divider {
+  border: none;
+  border-top: 3px dashed var(--border);
+  margin: 50px 0;
+}
+
+/* Cheatsheet */
+.cheat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+}
+.cheat-card {
+  background: var(--white);
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  padding: 14px 18px;
+}
+.cheat-fn { font-family: 'Fira Code', monospace; font-size: 0.8rem; font-weight: 600; color: var(--p1); margin-bottom: 6px; }
+.cheat-desc { font-size: 0.85rem; font-weight: 600; color: var(--muted); }
+
+/* Scroll helpers */
+::-webkit-scrollbar { width: 6px; height: 5px; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+/* Responsive */
+@media(max-width:768px) {
+  .sidebar { display: none; }
+  .main { padding: 20px; }
+  .explain-row { grid-template-columns: 1fr; }
+  .explain-code { border-right: none; border-bottom: 1px solid var(--border); }
+}
+
+.star { display: inline-block; }
+@keyframes spin { from{transform:rotate(0)} to{transform:rotate(360deg)} }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <span class="hero-emoji">🧠</span>
+    <h1>DSBDA <span>God-Level</span> Study Guide</h1>
+    <p>Understand every practical like a 5-year-old. No confusion. Just clarity. 🚀</p>
+    <div class="pill-row">
+      <span class="pill">📘 P1 — Data Wrangling I</span>
+      <span class="pill">📙 P2 — Data Wrangling II</span>
+      <span class="pill">📗 P3 — Descriptive Stats</span>
+      <span class="pill">📒 P4 — Linear Regression</span>
+      <span class="pill">📕 P5 — Logistic Regression</span>
+    </div>
+  </div>
+</div>
+
+<div class="layout">
+
+<!-- SIDEBAR -->
+<nav class="sidebar">
+  <div class="sidebar-label">Jump to Practical</div>
+  <a class="nav-link" href="#p1" style="--c:var(--p1)">
+    <span class="nav-icon">📘</span> P1 · Data Wrangling I
+  </a>
+  <a class="nav-link" href="#p2" style="--c:var(--p2)">
+    <span class="nav-icon">📙</span> P2 · Data Wrangling II
+  </a>
+  <a class="nav-link" href="#p3" style="--c:var(--p3)">
+    <span class="nav-icon">📗</span> P3 · Descriptive Stats
+  </a>
+  <a class="nav-link" href="#p4" style="--c:var(--p4)">
+    <span class="nav-icon">📒</span> P4 · Linear Regression
+  </a>
+  <a class="nav-link" href="#p5" style="--c:var(--p5)">
+    <span class="nav-icon">📕</span> P5 · Logistic Regression
+  </a>
+  <div class="sidebar-label" style="margin-top:18px;">Quick Ref</div>
+  <a class="nav-link" href="#cheatsheet">
+    <span class="nav-icon">⚡</span> Cheatsheet
+  </a>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main class="main">
+
+
+<!-- ══════════════════════════════════════════════════════
+     PRACTICAL 1 — DATA WRANGLING I (IRIS)
+══════════════════════════════════════════════════════ -->
+<section class="prac" id="p1">
+
+  <div class="obj-banner" data-emoji="🌸" style="background: linear-gradient(135deg, var(--p1l), #dde5ff); color: var(--p1);">
+    <div class="prac-num">Practical 1 · DSBDA_ASS1.ipynb</div>
+    <h2 style="color:#1e3a8a;">Data Wrangling — Part 1</h2>
+    <div class="tagline" style="color:#3730a3;">Dataset: IRIS flowers 🌸 · Skills: Types, Normalization, Encoding</div>
+    <div class="obj-box">
+      <div class="obj-title" style="color:#3730a3;">🎯 What is the OBJECTIVE of this practical?</div>
+      <p style="color:#1e3a8a;">
+        Imagine you collected data about 150 flowers — their petal size, sepal size, and species name.
+        But the computer can't understand words like "Iris-setosa" — it only understands numbers.
+        Also, different columns have wildly different ranges (e.g., 0.1 to 7.9), which confuses ML models.
+        <br><br>
+        <b>Your job in this practical:</b> Clean and prepare this raw flower data so that a Machine Learning model can actually use it. You will fix data types, scale all numbers to the same range, and convert text categories into numbers.
+      </p>
+    </div>
+  </div>
+
+  <!-- ROADMAP -->
+  <div class="roadmap">
+    <div class="rm-step">
+      <div class="rm-circle" style="background:var(--p1l);border-color:var(--p1);color:var(--p1);">1</div>
+      <div class="rm-label">Load<br>Data</div>
+    </div>
+    <div class="rm-step">
+      <div class="rm-circle" style="background:var(--p1l);border-color:var(--p1);color:var(--p1);">2</div>
+      <div class="rm-label">Check<br>Types</div>
+    </div>
+    <div class="rm-step">
+      <div class="rm-circle" style="background:var(--p1l);border-color:var(--p1);color:var(--p1);">3</div>
+      <div class="rm-label">Normalize<br>Numbers</div>
+    </div>
+    <div class="rm-step">
+      <div class="rm-circle" style="background:var(--p1l);border-color:var(--p1);color:var(--p1);">4</div>
+      <div class="rm-label">Label<br>Encode</div>
+    </div>
+    <div class="rm-step">
+      <div class="rm-circle" style="background:var(--p1l);border-color:var(--p1);color:var(--p1);">5</div>
+      <div class="rm-label">One-Hot<br>Encode</div>
+    </div>
+  </div>
+
+  <!-- PART 1 -->
+  <div class="sec-header">
+    <span class="sec-badge" style="background:var(--p1l);color:var(--p1);">Part 1</span>
+    <span class="sec-title">Load the Dataset &amp; Check Data Types</span>
+  </div>
+
+  <div class="why-box" style="background:var(--p1l);border-color:var(--p1m);">
+    <span class="why-icon">🤔</span>
+    <div class="why-content">
+      <strong style="color:var(--p1);">WHY ARE WE DOING THIS?</strong>
+      <p>Before you cook a meal, you first check what ingredients you have. Similarly, before analysing data, we load it and check what <b>type</b> each column is (number? text? decimal?). If a number column is stored as text, our math won't work!</p>
+    </div>
+  </div>
+
+  <div class="code-wrap">
+    <div class="code-top">
+      <div class="code-dots"><span style="background:#ff5f57"></span><span style="background:#ffbd2e"></span><span style="background:#28c840"></span></div>
+      <div class="code-purpose">📦 PART 1 — Import tools &amp; load data</div>
+    </div>
+    <pre><span class="kw">import</span> pandas <span class="kw">as</span> pd          <span class="cm"># tool to handle tables of data</span>
+<span class="kw">import</span> numpy  <span class="kw">as</span> np          <span class="cm"># tool for math &amp; arrays</span>
+
+df = pd.<span class="fn">read_csv</span>(<span class="st">"/content/IRIS.csv"</span>)   <span class="cm"># load the CSV file into a table</span>
+
+df.<span class="fn">dtypes</span>                    <span class="cm"># show data type of each column</span>
+
+df[<span class="st">'petal_length'</span>] = df[<span class="st">'petal_length'</span>].<span class="fn">astype</span>(<span class="st">"int"</span>)  <span class="cm"># convert float → integer</span>
+df.<span class="fn">dtypes</span>                    <span class="cm"># verify type changed</span></pre>
+  </div>
+  <div class="explain-table">
+    <div class="explain-row">
+      <div class="explain-code">import pandas as pd</div>
+      <div class="explain-text"><span class="emoji">📚</span> Think of <b>Pandas</b> as a super smart Excel inside Python. We nickname it <b>pd</b> so we don't have to type the full word every time.</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">import numpy as np</div>
+      <div class="explain-text"><span class="emoji">🔢</span> <b>NumPy</b> is a math toolkit. It handles arrays and numerical operations. We call it <b>np</b> for short.</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">pd.read_csv("IRIS.csv")</div>
+      <div class="explain-text"><span class="emoji">📂</span> Opens the CSV file and stores it as a <b>DataFrame</b> (a table with rows and columns) named <b>df</b>. The IRIS dataset has 150 flowers, 4 measurements + 1 species column.</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">df.dtypes</div>
+      <div class="explain-text"><span class="emoji">🔍</span> Shows the <b>data type</b> of each column. You'll see float64 (decimal numbers), object (text), int64 (whole numbers). This is your ingredient check!</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">.astype("int")</div>
+      <div class="explain-text"><span class="emoji">✂️</span> Converts the <b>petal_length</b> column from decimal (1.4) to whole number (1). Like rounding down. This is called <b>Type Casting</b>.</div>
+    </div>
+  </div>
+
+  <!-- PART 2 -->
+  <div class="sec-header">
+    <span class="sec-badge" style="background:var(--p1l);color:var(--p1);">Part 2</span>
+    <span class="sec-title">Min-Max Normalization — Making Numbers Fair</span>
+  </div>
+
+  <div class="analogy">
+    <span class="analogy-icon">🏃</span>
+    <div class="analogy-text">
+      <b>Real-life analogy:</b> Imagine comparing a student's age (18) with their marks (95) — totally different scales! If you feed this to a model, the model thinks "age=18" is more important than "marks=9" just because of the big number. Normalization squishes ALL columns into the <b>same scale: 0 to 1</b>. Now everything is fair!<br>
+      Formula: <b>(value - minimum) ÷ (maximum - minimum)</b>
+    </div>
+  </div>
+
+  <div class="why-box" style="background:var(--p1l);border-color:var(--p1m);">
+    <span class="why-icon">❓</span>
+    <div class="why-content">
+      <strong style="color:var(--p1);">WHY IS THIS CODE HERE?</strong>
+      <p>ML models like KNN or Neural Networks get confused when features have very different ranges. Normalization makes every feature contribute <b>equally</b>. This is one of the most important preprocessing steps in all of data science.</p>
+    </div>
+  </div>
+
+  <div class="code-wrap">
+    <div class="code-top">
+      <div class="code-dots"><span style="background:#ff5f57"></span><span style="background:#ffbd2e"></span><span style="background:#28c840"></span></div>
+      <div class="code-purpose">📐 PART 2 — Normalize all numeric columns to [0, 1]</div>
+    </div>
+    <pre><span class="kw">from</span> sklearn <span class="kw">import</span> preprocessing   <span class="cm"># import sklearn's preprocessing tools</span>
+
+min_max_scaler = preprocessing.<span class="fn">MinMaxScaler</span>()
+<span class="cm"># ↑ Create a "scaler" that knows how to apply (x-min)/(max-min)</span>
+
+x = df.<span class="fn">iloc</span>[:, :<span class="nm">4</span>]
+<span class="cm"># ↑ Select ONLY the first 4 columns (the measurements, not species text)</span>
+<span class="cm">#   iloc[:, :4] → all rows (:), first 4 columns (:4)</span>
+
+x_scaled = min_max_scaler.<span class="fn">fit_transform</span>(x)
+<span class="cm"># ↑ fit = learns min and max of each column</span>
+<span class="cm">#   transform = applies the formula. Returns values between 0 and 1</span>
+
+df_normalized = pd.<span class="fn">DataFrame</span>(x_scaled)
+<span class="cm"># ↑ The result is a raw array. Wrap it back into a nice table (DataFrame)</span>
+
+df_normalized   <span class="cm"># display the normalized table</span></pre>
+  </div>
+  <div class="explain-table">
+    <div class="explain-row">
+      <div class="explain-code">from sklearn import preprocessing</div>
+      <div class="explain-text"><span class="emoji">🛠️</span> <b>sklearn</b> (scikit-learn) is the main ML library. <b>preprocessing</b> is its toolbox for cleaning and preparing data. We bring this toolbox into our code.</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">MinMaxScaler()</div>
+      <div class="explain-text"><span class="emoji">📏</span> Creates a "ruler" that will measure the min and max of each column, then scale everything to 0–1. Like converting temperature from Celsius to a 0-to-1 scale.</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">df.iloc[:, :4]</div>
+      <div class="explain-text"><span class="emoji">✂️</span> <b>iloc</b> = select by position. <b>[: , :4]</b> = take ALL rows, take FIRST 4 columns. We skip the 'species' column because it's text — you can't normalize text!</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">fit_transform(x)</div>
+      <div class="explain-text"><span class="emoji">⚙️</span> Two steps in one: <b>fit</b> = the scaler looks at your data and finds min/max. <b>transform</b> = it applies the formula to every value. Result: all values between 0.0 and 1.0.</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">pd.DataFrame(x_scaled)</div>
+      <div class="explain-text"><span class="emoji">🗂️</span> fit_transform returns a plain NumPy array (no column names). We wrap it back into a DataFrame so it looks like a proper table again.</div>
+    </div>
+  </div>
+
+  <!-- PART 3 -->
+  <div class="sec-header">
+    <span class="sec-badge" style="background:var(--p1l);color:var(--p1);">Part 3</span>
+    <span class="sec-title">Label Encoding — Giving Numbers to Text</span>
+  </div>
+
+  <div class="analogy">
+    <span class="analogy-icon">🏷️</span>
+    <div class="analogy-text">
+      <b>Analogy:</b> Imagine your school has 3 houses — Red, Blue, Green. The computer can't work with words, so you assign: Red=0, Blue=1, Green=2. That's <b>Label Encoding!</b> Each category gets a unique integer.
+    </div>
+  </div>
+
+  <div class="code-wrap">
+    <div class="code-top">
+      <div class="code-dots"><span style="background:#ff5f57"></span><span style="background:#ffbd2e"></span><span style="background:#28c840"></span></div>
+      <div class="code-purpose">🏷️ PART 3 — Convert species text → numbers (0, 1, 2)</div>
+    </div>
+    <pre>label_encoder = preprocessing.<span class="fn">LabelEncoder</span>()
+<span class="cm"># ↑ Create a label encoder object — it will assign numbers to categories</span>
+
+df[<span class="st">'species'</span>] = label_encoder.<span class="fn">fit_transform</span>(df[<span class="st">'species'</span>])
+<span class="cm"># ↑ Transforms: "Iris-setosa"→0, "Iris-versicolor"→1, "Iris-virginica"→2</span>
+<span class="cm">#   (alphabetical order) — original column is REPLACED with numbers</span>
+
+df[<span class="st">'species'</span>].<span class="fn">unique</span>()  <span class="cm"># verify: should show [0, 1, 2]</span></pre>
+  </div>
+  <div class="explain-table">
+    <div class="explain-row">
+      <div class="explain-code">LabelEncoder()</div>
+      <div class="explain-text"><span class="emoji">🔢</span> Creates an encoder that maps each unique text category to a unique integer. Sorts categories alphabetically, then assigns 0, 1, 2...</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">fit_transform(df['species'])</div>
+      <div class="explain-text"><span class="emoji">🔄</span> <b>fit</b> = learns the 3 unique species names. <b>transform</b> = replaces every name with its assigned number. The whole column is now integers.</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">.unique()</div>
+      <div class="explain-text"><span class="emoji">✅</span> Shows unique values in the column. After encoding, you should see [0, 1, 2] — confirming all 3 species were encoded correctly.</div>
+    </div>
+  </div>
+
+  <!-- PART 4 -->
+  <div class="sec-header">
+    <span class="sec-badge" style="background:var(--p1l);color:var(--p1);">Part 4</span>
+    <span class="sec-title">One-Hot Encoding — A Better Way for Categories</span>
+  </div>
+
+  <div class="analogy">
+    <span class="analogy-icon">🎯</span>
+    <div class="analogy-text">
+      <b>Problem with Label Encoding:</b> When we say setosa=0, versicolor=1, virginica=2, the model might think virginica (2) is GREATER than setosa (0). But species have NO order!<br><br>
+      <b>One-Hot Encoding Fix:</b> Create 3 new columns — one per species. Each row gets a 1 in its species column, 0 everywhere else. No false ordering!<br>
+      setosa → [1, 0, 0] &nbsp; versicolor → [0, 1, 0] &nbsp; virginica → [0, 0, 1]
+    </div>
+  </div>
+
+  <div class="code-wrap">
+    <div class="code-top">
+      <div class="code-dots"><span style="background:#ff5f57"></span><span style="background:#ffbd2e"></span><span style="background:#28c840"></span></div>
+      <div class="code-purpose">🎯 PART 4 — One-Hot Encode species into 3 binary columns</div>
+    </div>
+    <pre>species = df[[<span class="st">'species'</span>]]
+<span class="cm"># ↑ Double brackets [[ ]] = keeps it as a DataFrame (2D), needed by OneHotEncoder</span>
+<span class="cm">#   Single bracket [ ] gives a Series (1D) which OHE doesn't accept</span>
+
+encoder = preprocessing.<span class="fn">OneHotEncoder</span>()
+
+encoded_species = encoder.<span class="fn">fit_transform</span>(species).<span class="fn">toarray</span>()
+<span class="cm"># ↑ fit_transform → creates binary matrix, .toarray() converts sparse to normal array</span>
+
+encoded_df = pd.<span class="fn">DataFrame</span>(encoded_species, columns=encoder.categories_[<span class="nm">0</span>])
+<span class="cm"># ↑ Wraps the array in a DataFrame. Column names = the actual category values</span>
+
+df_encoded = pd.<span class="fn">concat</span>([df, encoded_df], axis=<span class="nm">1</span>)
+<span class="cm"># ↑ axis=1 means "paste side-by-side" (column-wise). Joins original + encoded columns</span></pre>
+  </div>
+  <div class="explain-table">
+    <div class="explain-row">
+      <div class="explain-code">df[['species']]</div>
+      <div class="explain-text"><span class="emoji">📋</span> Double square brackets ensure the result stays as a <b>2D table</b> (DataFrame), not a 1D list. OneHotEncoder requires 2D input.</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">OneHotEncoder()</div>
+      <div class="explain-text"><span class="emoji">⬜</span> Creates separate binary (0 or 1) columns for each unique category. Each flower gets a 1 in its species column and 0 in all others.</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">.toarray()</div>
+      <div class="explain-text"><span class="emoji">🗃️</span> The encoder returns a "sparse matrix" (memory-efficient but hard to read). <b>.toarray()</b> converts it to a regular easy-to-use NumPy array.</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">encoder.categories_[0]</div>
+      <div class="explain-text"><span class="emoji">🏷️</span> Gets the category names from the encoder. Used as column headers so columns are named "Iris-setosa", "Iris-versicolor", "Iris-virginica" — not just 0, 1, 2.</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">pd.concat([df, encoded_df], axis=1)</div>
+      <div class="explain-text"><span class="emoji">🔗</span> <b>axis=1</b> = join tables side by side (add columns). If axis=0, it stacks rows. We're appending the 3 new OHE columns to the right of the original table.</div>
+    </div>
+  </div>
+
+</section>
+<hr class="divider">
+
+
+<!-- ══════════════════════════════════════════════════════
+     PRACTICAL 2 — DATA WRANGLING II (STUDENTS)
+══════════════════════════════════════════════════════ -->
+<section class="prac" id="p2">
+
+  <div class="obj-banner" data-emoji="📊" style="background: linear-gradient(135deg, var(--p2l), #ede9fe); color: var(--p2);">
+    <div class="prac-num">Practical 2 · assgn2.ipynb</div>
+    <h2 style="color:#4c1d95;">Data Wrangling — Part 2</h2>
+    <div class="tagline" style="color:#5b21b6;">Dataset: Students Performance 📚 · Skills: Missing values, Outliers, Visualization</div>
+    <div class="obj-box">
+      <div class="obj-title" style="color:#5b21b6;">🎯 What is the OBJECTIVE of this practical?</div>
+      <p style="color:#4c1d95;">
+        Real-world data is MESSY. Students sometimes skip filling forms — so some score fields will be empty (NaN = Not a Number). Strings like "Na" or "na" might appear instead of proper blank. Some students score unusually high or low — these are <b>outliers</b>.
+        <br><br>
+        <b>Your job:</b> Find all missing values, fill them intelligently (mean/median/std), detect outliers using boxplots, and visualize data relationships using scatter plots and histograms.
+      </p>
+    </div>
+  </div>
+
+  <!-- ROADMAP -->
+  <div class="roadmap">
+    <div class="rm-step">
+      <div class="rm-circle" style="background:var(--p2l);border-color:var(--p2);color:var(--p2);">1</div>
+      <div class="rm-label">Load &amp;<br>Check NaN</div>
+    </div>
+    <div class="rm-step">
+      <div class="rm-circle" style="background:var(--p2l);border-color:var(--p2);color:var(--p2);">2</div>
+      <div class="rm-label">Label<br>Encode</div>
+    </div>
+    <div class="rm-step">
+      <div class="rm-circle" style="background:var(--p2l);border-color:var(--p2);color:var(--p2);">3</div>
+      <div class="rm-label">Fill<br>Missing</div>
+    </div>
+    <div class="rm-step">
+      <div class="rm-circle" style="background:var(--p2l);border-color:var(--p2);color:var(--p2);">4</div>
+      <div class="rm-label">Boxplot<br>Outliers</div>
+    </div>
+    <div class="rm-step">
+      <div class="rm-circle" style="background:var(--p2l);border-color:var(--p2);color:var(--p2);">5</div>
+      <div class="rm-label">Scatter &amp;<br>Histogram</div>
+    </div>
+  </div>
+
+  <div class="sec-header">
+    <span class="sec-badge" style="background:var(--p2l);color:var(--p2);">Part 1</span>
+    <span class="sec-title">Load Data &amp; Find Missing Values</span>
+  </div>
+
+  <div class="why-box" style="background:var(--p2l);border-color:var(--p2m);">
+    <span class="why-icon">🔍</span>
+    <div class="why-content">
+      <strong style="color:var(--p2);">WHY IS THIS CODE HERE?</strong>
+      <p>Before we can analyse student scores, we need to know <b>which rows have missing data</b>. If we try to calculate the average of a column with missing values without handling them, we might get wrong results or errors.</p>
+    </div>
+  </div>
+
+  <div class="code-wrap">
+    <div class="code-top">
+      <div class="code-dots"><span style="background:#ff5f57"></span><span style="background:#ffbd2e"></span><span style="background:#28c840"></span></div>
+      <div class="code-purpose">🔍 PART 1 — Load data and detect missing (NaN) values</div>
+    </div>
+    <pre>df = pd.<span class="fn">read_csv</span>(<span class="st">"StudentsPerformance.csv"</span>)
+
+df.<span class="fn">isnull</span>()
+<span class="cm"># ↑ Returns a True/False table — True wherever a value is missing (NaN)</span>
+
+series = pd.<span class="fn">isnull</span>(df[<span class="st">"math score"</span>])
+df[series]
+<span class="cm"># ↑ Filter: show ONLY the rows where math score is missing</span>
+
+series1 = pd.<span class="fn">notnull</span>(df[<span class="st">"math score"</span>])
+df[series1]
+<span class="cm"># ↑ Filter: show ONLY the rows where math score IS present (opposite)</span></pre>
+  </div>
+  <div class="explain-table">
+    <div class="explain-row">
+      <div class="explain-code">df.isnull()</div>
+      <div class="explain-text"><span class="emoji">🚩</span> Goes through every cell and returns <b>True</b> if the cell is empty (NaN), <b>False</b> if it has a value. Like a "flag raiser" for missing data.</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">pd.isnull(df["math score"])</div>
+      <div class="explain-text"><span class="emoji">📌</span> Creates a boolean list (True/False) for only the "math score" column. True means that student's math score is missing.</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">df[series]</div>
+      <div class="explain-text"><span class="emoji">🔎</span> <b>Boolean indexing</b> — uses the True/False list to filter the DataFrame. Only rows where <b>series=True</b> (i.e., math score is missing) are shown.</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">pd.notnull(...)</div>
+      <div class="explain-text"><span class="emoji">✅</span> Opposite of isnull — returns True where data EXISTS. Used to show only valid rows (students who have their math score filled in).</div>
+    </div>
+  </div>
+
+  <div class="sec-header">
+    <span class="sec-badge" style="background:var(--p2l);color:var(--p2);">Part 2</span>
+    <span class="sec-title">Label Encode Gender + Handle Custom NA Values</span>
+  </div>
+
+  <div class="code-wrap">
+    <div class="code-top">
+      <div class="code-dots"><span style="background:#ff5f57"></span><span style="background:#ffbd2e"></span><span style="background:#28c840"></span></div>
+      <div class="code-purpose">🏷️ PART 2 — Encode gender text &amp; mark "Na"/"na" as proper NaN</div>
+    </div>
+    <pre><span class="kw">from</span> sklearn.preprocessing <span class="kw">import</span> LabelEncoder
+le = <span class="fn">LabelEncoder</span>()
+df[<span class="st">'gender'</span>] = le.<span class="fn">fit_transform</span>(df[<span class="st">"gender"</span>])
+<span class="cm"># ↑ Converts "male"→1, "female"→0 (alphabetical order)</span>
+
+missing_values = [<span class="st">"Na"</span>, <span class="st">"na"</span>]
+df = pd.<span class="fn">read_csv</span>(<span class="st">"file.csv"</span>, na_values=missing_values)
+<span class="cm"># ↑ When reading CSV, treat "Na" and "na" strings as proper NaN missing values</span>
+<span class="cm">#   Without this, "Na" stays as text and isnull() won't detect it!</span></pre>
+  </div>
+  <div class="explain-table">
+    <div class="explain-row">
+      <div class="explain-code">LabelEncoder().fit_transform(df['gender'])</div>
+      <div class="explain-text"><span class="emoji">👥</span> Encodes "female" as 0, "male" as 1 (alphabetical). The model can now use gender as a numeric input feature.</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">na_values=["Na", "na"]</div>
+      <div class="explain-text"><span class="emoji">🚨</span> Some CSV files store missing values as the text "Na" instead of leaving the cell blank. This parameter tells Pandas: <b>"hey, if you see Na or na, treat it as missing (NaN)"</b>.</div>
+    </div>
+  </div>
+
+  <div class="sec-header">
+    <span class="sec-badge" style="background:var(--p2l);color:var(--p2);">Part 3</span>
+    <span class="sec-title">Fill Missing Values — Mean, Median, Std, Min, Max</span>
+  </div>
+
+  <div class="analogy">
+    <span class="analogy-icon">🍕</span>
+    <div class="analogy-text">
+      <b>Analogy:</b> If 4 friends ate 3, 4, 5, 4 slices and one friend forgot to write theirs — you'd guess "probably 4 slices" (the average). That's filling with the <b>mean</b>! If the data is skewed (one person ate 20 slices), you'd use the <b>median</b> instead so the outlier doesn't mess up your guess.
+    </div>
+  </div>
+
+  <div class="code-wrap">
+    <div class="code-top">
+      <div class="code-dots"><span style="background:#ff5f57"></span><span style="background:#ffbd2e"></span><span style="background:#28c840"></span></div>
+      <div class="code-purpose">🩹 PART 3 — Fill NaN with appropriate statistical values</div>
+    </div>
+    <pre><span class="cm"># Fill math score NaN with MEAN (average value)</span>
+m_v = df[<span class="st">'math score'</span>].<span class="fn">mean</span>()
+df[<span class="st">'math score'</span>].<span class="fn">fillna</span>(value=m_v, inplace=<span class="kw">True</span>)
+
+<span class="cm"># Fill reading score NaN with MEDIAN (middle value)</span>
+me_v = df[<span class="st">'reading score'</span>].<span class="fn">median</span>()
+df[<span class="st">'reading score'</span>].<span class="fn">fillna</span>(value=me_v, inplace=<span class="kw">True</span>)
+
+<span class="cm"># Fill writing score NaN with STD (standard deviation)</span>
+std_v = df[<span class="st">'writing score'</span>].<span class="fn">std</span>()
+df[<span class="st">'writing score'</span>].<span class="fn">fillna</span>(value=std_v, inplace=<span class="kw">True</span>)
+
+<span class="cm"># Fill Placement Score NaN with MIN value</span>
+df[<span class="st">'Placement Score'</span>].<span class="fn">fillna</span>(value=df[<span class="st">'Placement Score'</span>].<span class="fn">min</span>(), inplace=<span class="kw">True</span>)
+
+<span class="cm"># Fill placement offer count NaN with MAX value</span>
+df[<span class="st">'placement offer count'</span>].<span class="fn">fillna</span>(value=df[<span class="st">'placement offer count'</span>].<span class="fn">max</span>(), inplace=<span class="kw">True</span>)</pre>
+  </div>
+  <div class="explain-table">
+    <div class="explain-row">
+      <div class="explain-code">df['col'].mean()</div>
+      <div class="explain-text"><span class="emoji">📊</span> Calculates the average of the column (ignores NaN automatically). Best for normally distributed data (bell curve).</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">df['col'].median()</div>
+      <div class="explain-text"><span class="emoji">⚖️</span> Finds the middle value when sorted. <b>Better than mean when there are outliers</b> — e.g., if one student scored 0 and another scored 100, the median isn't pulled to extremes.</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">df['col'].std()</div>
+      <div class="explain-text"><span class="emoji">📐</span> Standard deviation = measure of spread. Using it as a fill value shows how variable the writing scores are. (Unusual but asked in the assignment.)</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">fillna(value=..., inplace=True)</div>
+      <div class="explain-text"><span class="emoji">🩹</span> Fills all NaN cells with the given value. <b>inplace=True</b> means "change the table directly, don't create a new copy." Without inplace, you'd need to write <code>df['col'] = df['col'].fillna(...)</code>.</div>
+    </div>
+  </div>
+
+  <div class="sec-header">
+    <span class="sec-badge" style="background:var(--p2l);color:var(--p2);">Part 4</span>
+    <span class="sec-title">Boxplot, Scatter Plot &amp; Histogram</span>
+  </div>
+
+  <div class="why-box" style="background:var(--p2l);border-color:var(--p2m);">
+    <span class="why-icon">📦</span>
+    <div class="why-content">
+      <strong style="color:var(--p2);">WHY VISUALIZE? WHY IS THIS CODE HERE?</strong>
+      <p>Numbers alone are hard to interpret. A boxplot instantly shows you if there are <b>outliers</b> (dots outside whiskers). A scatter plot shows if two variables are <b>related</b>. A histogram shows the <b>distribution</b> of values. Visuals = quick understanding!</p>
+    </div>
+  </div>
+
+  <div class="code-wrap">
+    <div class="code-top">
+      <div class="code-dots"><span style="background:#ff5f57"></span><span style="background:#ffbd2e"></span><span style="background:#28c840"></span></div>
+      <div class="code-purpose">📈 PART 4 — Visualize data with boxplot, scatter, histogram</div>
+    </div>
+    <pre><span class="kw">import</span> matplotlib.pyplot <span class="kw">as</span> plt
+
+<span class="cm"># BOXPLOT — detect outliers in score columns</span>
+col = [<span class="st">'math score'</span>, <span class="st">'reading score'</span>, <span class="st">'writing score'</span>, <span class="st">'placement score'</span>]
+df.<span class="fn">boxplot</span>(col)
+<span class="cm"># ↑ Draws 4 boxplots side by side. Points outside whiskers = outliers</span>
+
+<span class="cm"># SCATTER PLOT — relationship between placement score vs offer count</span>
+fig, ax = plt.<span class="fn">subplots</span>(figsize=(<span class="nm">18</span>, <span class="nm">10</span>))
+ax.<span class="fn">scatter</span>(df[<span class="st">'placement score'</span>], df[<span class="st">'placement offer count'</span>])
+plt.<span class="fn">show</span>()
+<span class="cm"># ↑ Each dot = one student. X = placement score, Y = number of job offers</span>
+
+<span class="cm"># HISTOGRAM — distribution of math scores (normal vs log)</span>
+df[<span class="st">'math score'</span>].<span class="fn">plot</span>(kind=<span class="st">'hist'</span>)
+df[<span class="st">'log_math'</span>] = np.<span class="fn">log10</span>(df[<span class="st">'math score'</span>])
+df[<span class="st">'log_math'</span>].<span class="fn">plot</span>(kind=<span class="st">'hist'</span>)
+<span class="cm"># ↑ np.log10 compresses large values. Makes skewed data look more normal</span></pre>
+  </div>
+  <div class="explain-table">
+    <div class="explain-row">
+      <div class="explain-code">df.boxplot(col)</div>
+      <div class="explain-text"><span class="emoji">📦</span> Draws a <b>box</b> from Q1 (25th percentile) to Q3 (75th percentile), with a line at median. Whiskers extend 1.5× IQR. Any dots OUTSIDE the whiskers are <b>outliers</b>.</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">plt.subplots(figsize=(18,10))</div>
+      <div class="explain-text"><span class="emoji">🖼️</span> Creates a blank canvas (figure) of size 18×10 inches. Returns two objects: <b>fig</b> = the whole figure, <b>ax</b> = the axes (the plot area inside).</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">ax.scatter(x, y)</div>
+      <div class="explain-text"><span class="emoji">🔵</span> Plots dots where X = placement score, Y = job offer count. If dots go upward left-to-right, it means <b>higher score = more offers</b> (positive correlation).</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">np.log10(df['math score'])</div>
+      <div class="explain-text"><span class="emoji">📉</span> <b>Log transformation</b> — compresses large values. Score of 100 becomes 2.0, score of 10 becomes 1.0. Makes right-skewed data look more symmetric and easier to analyse.</div>
+    </div>
+  </div>
+
+</section>
+<hr class="divider">
+
+
+<!-- ══════════════════════════════════════════════════════
+     PRACTICAL 3 — DESCRIPTIVE STATS
+══════════════════════════════════════════════════════ -->
+<section class="prac" id="p3">
+
+  <div class="obj-banner" data-emoji="📊" style="background: linear-gradient(135deg, var(--p3l), #d1fae5); color: var(--p3);">
+    <div class="prac-num">Practical 3 · ass3.ipynb</div>
+    <h2 style="color:#064e3b;">Descriptive Statistics</h2>
+    <div class="tagline" style="color:#065f46;">Dataset: Mall Customers 🛍️ &amp; IRIS 🌸 · Skills: Mean, Median, Mode, Std, GroupBy</div>
+    <div class="obj-box">
+      <div class="obj-title" style="color:#065f46;">🎯 What is the OBJECTIVE of this practical?</div>
+      <p style="color:#064e3b;">
+        You're a data analyst for a mall. You have data of 200 customers — their age, gender, income, and spending score. The manager asks: "What is the average age of our customers? Are male customers younger than female ones? What's the most common age?"
+        <br><br>
+        <b>Your job:</b> Compute summary statistics (mean, median, mode, std, min, max) for the mall dataset, group data by gender to compare, and do species-wise analysis on the IRIS dataset.
+      </p>
+    </div>
+  </div>
+
+  <div class="roadmap">
+    <div class="rm-step">
+      <div class="rm-circle" style="background:var(--p3l);border-color:var(--p3);color:var(--p3);">1</div>
+      <div class="rm-label">Load<br>Data</div>
+    </div>
+    <div class="rm-step">
+      <div class="rm-circle" style="background:var(--p3l);border-color:var(--p3);color:var(--p3);">2</div>
+      <div class="rm-label">Mean/<br>Median/<br>Mode</div>
+    </div>
+    <div class="rm-step">
+      <div class="rm-circle" style="background:var(--p3l);border-color:var(--p3);color:var(--p3);">3</div>
+      <div class="rm-label">Std, Min,<br>Max</div>
+    </div>
+    <div class="rm-step">
+      <div class="rm-circle" style="background:var(--p3l);border-color:var(--p3);color:var(--p3);">4</div>
+      <div class="rm-label">GroupBy<br>Gender</div>
+    </div>
+    <div class="rm-step">
+      <div class="rm-circle" style="background:var(--p3l);border-color:var(--p3);color:var(--p3);">5</div>
+      <div class="rm-label">Species<br>Stats</div>
+    </div>
+  </div>
+
+  <div class="sec-header">
+    <span class="sec-badge" style="background:var(--p3l);color:var(--p3);">Part 1</span>
+    <span class="sec-title">Mean, Median, Mode, Max, Min, Std</span>
+  </div>
+
+  <div class="analogy">
+    <span class="analogy-icon">📐</span>
+    <div class="analogy-text">
+      <b>Quick refresher:</b> &nbsp;
+      <b>Mean</b> = add all, divide by count. &nbsp;
+      <b>Median</b> = the middle value when sorted. &nbsp;
+      <b>Mode</b> = most frequent value. &nbsp;
+      <b>Std</b> = how spread out the values are (high std = all over the place, low std = tightly packed). &nbsp;
+      <b>axis=0</b> = go DOWN columns (default). <b>axis=1</b> = go ACROSS rows.
+    </div>
+  </div>
+
+  <div class="code-wrap">
+    <div class="code-top">
+      <div class="code-dots"><span style="background:#ff5f57"></span><span style="background:#ffbd2e"></span><span style="background:#28c840"></span></div>
+      <div class="code-purpose">📊 PART 1 — Compute all descriptive statistics</div>
+    </div>
+    <pre>df = pd.<span class="fn">read_csv</span>(<span class="st">"./Mall_Customers.csv"</span>)
+
+df.<span class="fn">mean</span>()                        <span class="cm"># average of EVERY numeric column</span>
+df.<span class="fn">loc</span>[:, <span class="st">'Age'</span>].<span class="fn">mean</span>()          <span class="cm"># average of ONLY the Age column</span>
+df.<span class="fn">loc</span>[:, <span class="st">'CustomerID'</span>].<span class="fn">mean</span>()   <span class="cm"># average of CustomerID column</span>
+df.<span class="fn">mean</span>(axis=<span class="nm">1</span>)[<span class="nm">0</span>:<span class="nm">4</span>]            <span class="cm"># average ACROSS columns, for first 4 rows</span>
+
+df.<span class="fn">median</span>()                      <span class="cm"># median of all columns</span>
+df.<span class="fn">median</span>(axis=<span class="nm">1</span>)[<span class="nm">0</span>:<span class="nm">4</span>]          <span class="cm"># row-wise median, first 4 rows</span>
+df.<span class="fn">loc</span>[:, <span class="st">'CustomerID'</span>].<span class="fn">median</span>()
+
+df.<span class="fn">mode</span>()                        <span class="cm"># most frequent value in each column</span>
+df.<span class="fn">loc</span>[:, <span class="st">'Age'</span>].<span class="fn">mode</span>()
+
+df.<span class="fn">max</span>()                         <span class="cm"># maximum of each column</span>
+df.<span class="fn">min</span>()                         <span class="cm"># minimum of each column</span>
+df.<span class="fn">std</span>()                         <span class="cm"># standard deviation of each column</span></pre>
+  </div>
+  <div class="explain-table">
+    <div class="explain-row">
+      <div class="explain-code">df.loc[:, 'Age']</div>
+      <div class="explain-text"><span class="emoji">📍</span> <b>loc</b> = label-based selector. <b>[:, 'Age']</b> means: all rows (:), select column named 'Age'. Alternative: <code>df['Age']</code> gives the same result.</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">df.mean(axis=1)[0:4]</div>
+      <div class="explain-text"><span class="emoji">↔️</span> <b>axis=1</b> = compute mean going ACROSS (left to right) each row. So for row 0, it averages CustomerID + Age + Income + Score. <b>[0:4]</b> shows first 4 rows' results only.</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">df.mode()</div>
+      <div class="explain-text"><span class="emoji">🏆</span> Mode returns the MOST FREQUENT value. Unlike mean/median, there can be multiple modes (multimodal). That's why mode() returns a DataFrame — it shows all modes for each column.</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">df.std()</div>
+      <div class="explain-text"><span class="emoji">📏</span> Standard deviation tells how spread out data is. Small std = values clustered near mean. Large std = values are widely spread. E.g., Ages clustered around 30–40 = small std.</div>
+    </div>
+  </div>
+
+  <div class="sec-header">
+    <span class="sec-badge" style="background:var(--p3l);color:var(--p3);">Part 2</span>
+    <span class="sec-title">GroupBy — Compare Male vs Female Customers</span>
+  </div>
+
+  <div class="why-box" style="background:var(--p3l);border-color:var(--p3m);">
+    <span class="why-icon">👥</span>
+    <div class="why-content">
+      <strong style="color:var(--p3);">WHY GroupBy? WHY IS THIS CODE HERE?</strong>
+      <p>The mall wants to know: <b>"Do male customers spend more or female customers?"</b> With GroupBy, we split the data into groups (Male/Female), then compute stats within each group. It's like making separate Excel sheets for Male and Female, then pressing "calculate average" on each.</p>
+    </div>
+  </div>
+
+  <div class="code-wrap">
+    <div class="code-top">
+      <div class="code-dots"><span style="background:#ff5f57"></span><span style="background:#ffbd2e"></span><span style="background:#28c840"></span></div>
+      <div class="code-purpose">👥 PART 2 — Group by Gender and compute mean Age per group</div>
+    </div>
+    <pre>df.<span class="fn">groupby</span>([<span class="st">'Genre'</span>])[<span class="st">'Age'</span>].<span class="fn">mean</span>()
+<span class="cm"># Splits customers into Male and Female groups</span>
+<span class="cm"># Then calculates average Age within each group</span>
+<span class="cm"># Output: Genre | avg Age</span>
+<span class="cm">#         Female | 38.1</span>
+<span class="cm">#         Male   | 39.8</span>
+
+df_u = df.<span class="fn">rename</span>(columns={<span class="st">'Annual Income k$)'</span>: <span class="st">'Income'</span>}, inplace=<span class="kw">False</span>)
+<span class="cm"># Rename the awkwardly-named column to 'Income' for easier use later</span></pre>
+  </div>
+  <div class="explain-table">
+    <div class="explain-row">
+      <div class="explain-code">df.groupby(['Genre'])['Age'].mean()</div>
+      <div class="explain-text"><span class="emoji">🗂️</span> Step 1: <b>groupby('Genre')</b> — splits the table into subgroups (Male rows and Female rows). Step 2: <b>['Age']</b> — focus on the Age column only. Step 3: <b>.mean()</b> — compute average within each group.</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">df.rename(columns={old: new}, inplace=False)</div>
+      <div class="explain-text"><span class="emoji">✏️</span> Renames column(s) using a dictionary {old_name: new_name}. <b>inplace=False</b> means it returns a NEW DataFrame (original df unchanged). Stored in df_u.</div>
+    </div>
+  </div>
+
+  <div class="sec-header">
+    <span class="sec-badge" style="background:var(--p3l);color:var(--p3);">Part 3</span>
+    <span class="sec-title">Species-wise Statistics on IRIS</span>
+  </div>
+
+  <div class="code-wrap">
+    <div class="code-top">
+      <div class="code-dots"><span style="background:#ff5f57"></span><span style="background:#ffbd2e"></span><span style="background:#28c840"></span></div>
+      <div class="code-purpose">🌸 PART 3 — Filter each species and show its statistics separately</div>
+    </div>
+    <pre>iris = pd.<span class="fn">read_csv</span>(<span class="st">"./IRIS.csv"</span>)
+
+irisSet = (iris[<span class="st">'species'</span>] == <span class="st">'Iris-setosa'</span>)
+<span class="cm"># ↑ Creates a list: True for rows that ARE setosa, False for all others</span>
+
+print(iris[irisSet].<span class="fn">describe</span>())
+<span class="cm"># ↑ Filter only setosa rows, then .describe() gives full stats summary:</span>
+<span class="cm">#   count, mean, std, min, 25%, 50%, 75%, max — all in one table!</span>
+
+irisVer = (iris[<span class="st">'species'</span>] == <span class="st">'Iris-versicolor'</span>)
+print(iris[irisVer].<span class="fn">describe</span>())
+
+irisVir = (iris[<span class="st">'species'</span>] == <span class="st">'Iris-virginica'</span>)
+print(iris[irisVir].<span class="fn">describe</span>())</pre>
+  </div>
+  <div class="explain-table">
+    <div class="explain-row">
+      <div class="explain-code">iris['species'] == 'Iris-setosa'</div>
+      <div class="explain-text"><span class="emoji">🎯</span> Creates a <b>boolean mask</b> — a list of True/False values. True for every row where species exactly equals 'Iris-setosa'. Think of it as a filter.</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">iris[irisSet].describe()</div>
+      <div class="explain-text"><span class="emoji">📋</span> <b>iris[irisSet]</b> = shows only setosa rows. <b>.describe()</b> = generates a full stats table with count, mean, std, min, 25%, 50% (median), 75%, max — all at once!</div>
+    </div>
+  </div>
+
+</section>
+<hr class="divider">
+
+
+<!-- ══════════════════════════════════════════════════════
+     PRACTICAL 4 — LINEAR REGRESSION
+══════════════════════════════════════════════════════ -->
+<section class="prac" id="p4">
+
+  <div class="obj-banner" data-emoji="📈" style="background: linear-gradient(135deg, var(--p4l), #fef3c7); color: var(--p4);">
+    <div class="prac-num">Practical 4 · Assignment4.ipynb</div>
+    <h2 style="color:#78350f;">Linear Regression</h2>
+    <div class="tagline" style="color:#92400e;">Dataset: Student marks &amp; California Housing 🏠 · Skills: Regression, MSE, R²</div>
+    <div class="obj-box">
+      <div class="obj-title" style="color:#92400e;">🎯 What is the OBJECTIVE of this practical?</div>
+      <p style="color:#78350f;">
+        Imagine you study the relationship between a student's marks in Physics and Maths. You notice: students who score high in Physics tend to score high in Maths too. Can we <b>draw a line</b> through this data that best represents the relationship? And then use that line to <b>predict</b> what a new student's Maths score will be given their Physics score?
+        <br><br>
+        <b>Your job:</b> Build a simple linear regression model using NumPy (Part A), then a multiple linear regression model using sklearn on the California Housing dataset (Part B). Measure how good your model is using R² and MSE.
+      </p>
+    </div>
+  </div>
+
+  <div class="roadmap">
+    <div class="rm-step">
+      <div class="rm-circle" style="background:var(--p4l);border-color:var(--p4);color:var(--p4);">A1</div>
+      <div class="rm-label">Fit Line<br>(NumPy)</div>
+    </div>
+    <div class="rm-step">
+      <div class="rm-circle" style="background:var(--p4l);border-color:var(--p4);color:var(--p4);">A2</div>
+      <div class="rm-label">Predict &amp;<br>R² Score</div>
+    </div>
+    <div class="rm-step">
+      <div class="rm-circle" style="background:var(--p4l);border-color:var(--p4);color:var(--p4);">B1</div>
+      <div class="rm-label">Load<br>Housing</div>
+    </div>
+    <div class="rm-step">
+      <div class="rm-circle" style="background:var(--p4l);border-color:var(--p4);color:var(--p4);">B2</div>
+      <div class="rm-label">Train<br>Model</div>
+    </div>
+    <div class="rm-step">
+      <div class="rm-circle" style="background:var(--p4l);border-color:var(--p4);color:var(--p4);">B3</div>
+      <div class="rm-label">Eval &amp;<br>Plot</div>
+    </div>
+  </div>
+
+  <div class="sec-header">
+    <span class="sec-badge" style="background:var(--p4l);color:var(--p4);">Part A</span>
+    <span class="sec-title">Simple Linear Regression using NumPy</span>
+  </div>
+
+  <div class="analogy">
+    <span class="analogy-icon">📏</span>
+    <div class="analogy-text">
+      <b>What is a regression line?</b> You have dots on a graph (student scores). You want to draw ONE straight line that passes as close as possible to ALL the dots. That line has the equation: <b>y = m × x + c</b> where m = slope (steepness) and c = intercept (where it hits the Y-axis). Once you have this line, you can PREDICT y for any new x!
+    </div>
+  </div>
+
+  <div class="code-wrap">
+    <div class="code-top">
+      <div class="code-dots"><span style="background:#ff5f57"></span><span style="background:#ffbd2e"></span><span style="background:#28c840"></span></div>
+      <div class="code-purpose">📐 PART A — Fit a line to 5 students' marks and make predictions</div>
+    </div>
+    <pre>x = np.<span class="fn">array</span>([<span class="nm">95</span>, <span class="nm">85</span>, <span class="nm">80</span>, <span class="nm">70</span>, <span class="nm">60</span>])   <span class="cm"># subject A marks (input)</span>
+y = np.<span class="fn">array</span>([<span class="nm">85</span>, <span class="nm">95</span>, <span class="nm">70</span>, <span class="nm">65</span>, <span class="nm">70</span>])   <span class="cm"># subject B marks (output to predict)</span>
+
+model = np.<span class="fn">polyfit</span>(x, y, <span class="nm">1</span>)
+<span class="cm"># ↑ Finds the BEST FIT LINE through these 5 points</span>
+<span class="cm">#   Returns: [slope, intercept] = the m and c in y = mx + c</span>
+<span class="cm">#   The "1" means degree 1 = straight line (not a curve)</span>
+
+predict = np.<span class="fn">poly1d</span>(model)
+<span class="cm"># ↑ Converts [slope, intercept] into a callable function</span>
+<span class="cm">#   Now you can do predict(65) to get the predicted y for x=65</span>
+
+predict(<span class="nm">65</span>)   <span class="cm"># What mark in subject B for a student with 65 in subject A?</span>
+
+y_pred = <span class="fn">predict</span>(x)   <span class="cm"># Predicted y for all 5 training points</span>
+
+<span class="kw">from</span> sklearn.metrics <span class="kw">import</span> r2_score
+r2_score(y, y_pred)
+<span class="cm"># ↑ R² score: How good is our line? 1.0 = perfect, 0 = useless</span>
+
+<span class="cm"># Draw the regression line</span>
+y_line = model[<span class="nm">1</span>] + model[<span class="nm">0</span>] * x   <span class="cm"># y = intercept + slope × x</span>
+plt.<span class="fn">plot</span>(x, y_line, c=<span class="st">'r'</span>)          <span class="cm"># draw the red line</span>
+plt.<span class="fn">scatter</span>(x, y, c=<span class="st">'r'</span>)            <span class="cm"># plot actual data points</span></pre>
+  </div>
+  <div class="explain-table">
+    <div class="explain-row">
+      <div class="explain-code">np.array([95, 85, ...])</div>
+      <div class="explain-text"><span class="emoji">📦</span> Creates a NumPy array — like a Python list but much faster for math. x = scores in subject A for 5 students. y = their scores in subject B.</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">np.polyfit(x, y, 1)</div>
+      <div class="explain-text"><span class="emoji">📐</span> Uses <b>Least Squares method</b> to find the line y=mx+c that minimizes total distance from all points. Returns <b>[m (slope), c (intercept)]</b>. The "1" = degree 1 = straight line.</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">np.poly1d(model)</div>
+      <div class="explain-text"><span class="emoji">🔧</span> Converts the [slope, intercept] array into a <b>usable function</b>. Instead of manually computing m*x+c every time, you just call <code>predict(65)</code>.</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">r2_score(y, y_pred)</div>
+      <div class="explain-text"><span class="emoji">⭐</span> <b>R² (R-squared)</b> tells how well the line explains the data variation. 1.0 = line fits perfectly. 0 = line is no better than just predicting the mean every time.</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">model[1] + model[0] * x</div>
+      <div class="explain-text"><span class="emoji">📊</span> Manually computing y = <b>intercept + slope × x</b>. model[0]=slope, model[1]=intercept. Used to get the y-values along the line for plotting.</div>
+    </div>
+  </div>
+
+  <div class="sec-header">
+    <span class="sec-badge" style="background:var(--p4l);color:var(--p4);">Part B</span>
+    <span class="sec-title">Multiple Linear Regression — California Housing Dataset</span>
+  </div>
+
+  <div class="why-box" style="background:var(--p4l);border-color:var(--p4m);">
+    <span class="why-icon">🏠</span>
+    <div class="why-content">
+      <strong style="color:var(--p4);">WHY IS THIS CODE HERE?</strong>
+      <p>In Part A, we used just ONE feature (subject A marks) to predict ONE output. In real life, house prices depend on <b>MANY factors</b> — number of rooms, location, income of area, age of house, etc. <b>Multiple Linear Regression</b> handles many input features simultaneously to predict one output (price).</p>
+    </div>
+  </div>
+
+  <div class="code-wrap">
+    <div class="code-top">
+      <div class="code-dots"><span style="background:#ff5f57"></span><span style="background:#ffbd2e"></span><span style="background:#28c840"></span></div>
+      <div class="code-purpose">🏠 PART B — Predict house prices from 8 features using Linear Regression</div>
+    </div>
+    <pre><span class="kw">from</span> sklearn.datasets <span class="kw">import</span> fetch_california_housing
+<span class="kw">from</span> sklearn.model_selection <span class="kw">import</span> train_test_split
+<span class="kw">from</span> sklearn.linear_model <span class="kw">import</span> LinearRegression
+<span class="kw">from</span> sklearn.metrics <span class="kw">import</span> mean_squared_error
+
+housing = <span class="fn">fetch_california_housing</span>()
+<span class="cm"># ↑ Loads a built-in dataset of 20,000+ California homes</span>
+<span class="cm">#   Features: avg rooms, avg bedrooms, population, income, etc.</span>
+<span class="cm">#   Target: median house price (in $100,000s)</span>
+
+data = pd.<span class="fn">DataFrame</span>(housing.data)
+data.columns = housing.feature_names
+data[<span class="st">'PRICE'</span>] = housing.target
+<span class="cm"># ↑ Build the full table: 8 feature columns + 1 PRICE column</span>
+
+data.<span class="fn">isnull</span>().<span class="fn">sum</span>()
+<span class="cm"># ↑ Always check for missing values before training. All zeros = clean data!</span>
+
+x = data.<span class="fn">drop</span>([<span class="st">'PRICE'</span>], axis=<span class="nm">1</span>)  <span class="cm"># features (all columns except price)</span>
+y = data[<span class="st">'PRICE'</span>]                  <span class="cm"># target (what we want to predict)</span>
+
+xtrain, xtest, ytrain, ytest = <span class="fn">train_test_split</span>(x, y, test_size=<span class="nm">0.2</span>, random_state=<span class="nm">0</span>)
+<span class="cm"># ↑ Split: 80% data for training, 20% kept aside for testing</span>
+<span class="cm">#   random_state=0 = always same split (reproducible)</span>
+
+lm = <span class="fn">LinearRegression</span>()
+lm.<span class="fn">fit</span>(xtrain, ytrain)
+<span class="cm"># ↑ TRAINING: model learns coefficients (weights) for each feature</span>
+<span class="cm">#   It finds the formula: price = w1×income + w2×rooms + w3×age + ...</span>
+
+ytrain_pred = lm.<span class="fn">predict</span>(xtrain)
+ytest_pred  = lm.<span class="fn">predict</span>(xtest)
+<span class="cm"># ↑ Use the trained model to predict prices for both train and test sets</span>
+
+mse = <span class="fn">mean_squared_error</span>(ytest, ytest_pred)
+print(mse)
+<span class="cm"># ↑ MSE = average of (actual price - predicted price)²</span>
+<span class="cm">#   Lower MSE = better model</span></pre>
+  </div>
+  <div class="explain-table">
+    <div class="explain-row">
+      <div class="explain-code">fetch_california_housing()</div>
+      <div class="explain-text"><span class="emoji">🏘️</span> A ready-made dataset inside sklearn. Contains info about California houses. No need to download a CSV — sklearn provides it directly. Has 8 input features and 1 price target.</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">data.drop(['PRICE'], axis=1)</div>
+      <div class="explain-text"><span class="emoji">✂️</span> We can't use PRICE as a feature to predict PRICE — that's cheating! <b>axis=1</b> = drop a column (not a row). Creates the feature matrix x without the target column.</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">train_test_split(x, y, test_size=0.2)</div>
+      <div class="explain-text"><span class="emoji">🔀</span> Randomly shuffles and splits data: 80% to train, 20% to test. Like studying from 80% of past papers, then testing yourself on the remaining 20% you haven't seen.</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">lm.fit(xtrain, ytrain)</div>
+      <div class="explain-text"><span class="emoji">🎓</span> <b>This is where learning happens.</b> The model studies the training data and finds the best weights (coefficients) for each feature. Like a student cramming before an exam.</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">lm.predict(xtest)</div>
+      <div class="explain-text"><span class="emoji">🔮</span> Uses the learned weights to predict prices for NEW (test) houses the model never saw during training. Tests if it truly learned or just memorized.</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">mean_squared_error(ytest, ytest_pred)</div>
+      <div class="explain-text"><span class="emoji">📉</span> Compares actual prices vs predicted prices. Squares the difference (so positive/negative errors don't cancel), then takes the average. <b>Lower = better predictions.</b></div>
+    </div>
+  </div>
+
+  <div class="sec-header">
+    <span class="sec-badge" style="background:var(--p4l);color:var(--p4);">Part C</span>
+    <span class="sec-title">Scatter Plot — Actual vs Predicted</span>
+  </div>
+
+  <div class="code-wrap">
+    <div class="code-top">
+      <div class="code-dots"><span style="background:#ff5f57"></span><span style="background:#ffbd2e"></span><span style="background:#28c840"></span></div>
+      <div class="code-purpose">📊 PART C — Visualize how close predictions are to reality</div>
+    </div>
+    <pre>plt.<span class="fn">scatter</span>(ytrain, ytrain_pred, c=<span class="st">'blue'</span>,   marker=<span class="st">'o'</span>, label=<span class="st">'Training data'</span>)
+plt.<span class="fn">scatter</span>(ytest,  ytest_pred,  c=<span class="st">'lightgreen'</span>, marker=<span class="st">'s'</span>, label=<span class="st">'Test data'</span>)
+<span class="cm"># ↑ X-axis = actual price. Y-axis = model's predicted price</span>
+<span class="cm">#   Perfect model = all dots on a diagonal line y=x</span>
+<span class="cm">#   Scatter around the diagonal = prediction errors</span>
+
+plt.<span class="fn">xlabel</span>(<span class="st">'True values'</span>)
+plt.<span class="fn">ylabel</span>(<span class="st">'Predicted'</span>)
+plt.<span class="fn">title</span>(<span class="st">"True value vs Predicted value"</span>)
+plt.<span class="fn">legend</span>(loc=<span class="st">'upper left'</span>)
+plt.<span class="fn">show</span>()</pre>
+  </div>
+  <div class="explain-table">
+    <div class="explain-row">
+      <div class="explain-code">plt.scatter(ytrain, ytrain_pred)</div>
+      <div class="explain-text"><span class="emoji">🔵</span> Plots actual prices (x) vs predicted prices (y) for training data. If the model is good, points form a diagonal line. Large deviations from diagonal = poor predictions.</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">marker='o' and 's'</div>
+      <div class="explain-text"><span class="emoji">⭕</span> 'o' = circle shape for training dots. 's' = square shape for test dots. This lets you see both datasets on the same graph without confusion.</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">plt.legend(loc='upper left')</div>
+      <div class="explain-text"><span class="emoji">🏷️</span> Adds a legend box showing what blue circles and green squares represent. loc='upper left' places it in the top-left corner of the chart.</div>
+    </div>
+  </div>
+
+</section>
+<hr class="divider">
+
+
+<!-- ══════════════════════════════════════════════════════
+     PRACTICAL 5 — LOGISTIC REGRESSION
+══════════════════════════════════════════════════════ -->
+<section class="prac" id="p5">
+
+  <div class="obj-banner" data-emoji="🎯" style="background: linear-gradient(135deg, var(--p5l), #fce7f3); color: var(--p5);">
+    <div class="prac-num">Practical 5 · 5Logistic_Regression.ipynb</div>
+    <h2 style="color:#831843;">Logistic Regression</h2>
+    <div class="tagline" style="color:#9d174d;">Dataset: Mall Customers data5.csv 🛍️ · Skills: Classification, Confusion Matrix, Metrics</div>
+    <div class="obj-box">
+      <div class="obj-title" style="color:#9d174d;">🎯 What is the OBJECTIVE of this practical?</div>
+      <p style="color:#831843;">
+        A mall wants to know: <b>"Will this customer buy the premium membership or not?"</b> — The answer is binary: YES (1) or NO (0). This is a <b>classification</b> problem.
+        <br><br>
+        Unlike Linear Regression that predicts a continuous number (like price), Logistic Regression predicts a <b>category</b> (Yes/No, Spam/Not-Spam, Disease/No-Disease).
+        <br><br>
+        <b>Your job:</b> Train a Logistic Regression model to classify customers, then evaluate HOW GOOD the model is using a Confusion Matrix and 5 metrics: Accuracy, Precision, Recall, F1 Score, and Specificity. Finally, take user input and predict their class.
+      </p>
+    </div>
+  </div>
+
+  <div class="roadmap">
+    <div class="rm-step">
+      <div class="rm-circle" style="background:var(--p5l);border-color:var(--p5);color:var(--p5);">1</div>
+      <div class="rm-label">Load &amp;<br>Prepare</div>
+    </div>
+    <div class="rm-step">
+      <div class="rm-circle" style="background:var(--p5l);border-color:var(--p5);color:var(--p5);">2</div>
+      <div class="rm-label">Split<br>Train/Test</div>
+    </div>
+    <div class="rm-step">
+      <div class="rm-circle" style="background:var(--p5l);border-color:var(--p5);color:var(--p5);">3</div>
+      <div class="rm-label">Train<br>Model</div>
+    </div>
+    <div class="rm-step">
+      <div class="rm-circle" style="background:var(--p5l);border-color:var(--p5);color:var(--p5);">4</div>
+      <div class="rm-label">Confusion<br>Matrix</div>
+    </div>
+    <div class="rm-step">
+      <div class="rm-circle" style="background:var(--p5l);border-color:var(--p5);color:var(--p5);">5</div>
+      <div class="rm-label">5 Metrics</div>
+    </div>
+    <div class="rm-step">
+      <div class="rm-circle" style="background:var(--p5l);border-color:var(--p5);color:var(--p5);">6</div>
+      <div class="rm-label">User<br>Predict</div>
+    </div>
+  </div>
+
+  <div class="sec-header">
+    <span class="sec-badge" style="background:var(--p5l);color:var(--p5);">Theory</span>
+    <span class="sec-title">Understanding the Confusion Matrix (MOST IMPORTANT!)</span>
+  </div>
+
+  <div class="analogy">
+    <span class="analogy-icon">🩺</span>
+    <div class="analogy-text">
+      <b>Medical test analogy:</b> You test 100 people for a disease. Some actually HAVE it (Positive), some don't (Negative). Your test might be right or wrong. That gives 4 possible outcomes:
+      <br>• <b>True Positive (TP):</b> Patient HAS disease, test says YES ✅
+      <br>• <b>True Negative (TN):</b> Patient has NO disease, test says NO ✅
+      <br>• <b>False Positive (FP):</b> Patient has NO disease, but test says YES ❌ (False Alarm!)
+      <br>• <b>False Negative (FN):</b> Patient HAS disease, but test says NO ❌ (Missed Case!)
+    </div>
+  </div>
+
+  <div class="cm-wrap">
+    <table class="cm">
+      <tr>
+        <th></th>
+        <th>Model Predicted: YES (1)</th>
+        <th>Model Predicted: NO (0)</th>
+      </tr>
+      <tr>
+        <th>Actual: YES (1)</th>
+        <td class="tp">✅ True Positive (TP)<br><small>Correctly said YES</small></td>
+        <td class="fn">❌ False Negative (FN)<br><small>Said NO, but was YES<br>"Missed it!"</small></td>
+      </tr>
+      <tr>
+        <th>Actual: NO (0)</th>
+        <td class="fp">❌ False Positive (FP)<br><small>Said YES, but was NO<br>"False alarm!"</small></td>
+        <td class="tn">✅ True Negative (TN)<br><small>Correctly said NO</small></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="fml-grid">
+    <div class="fml-card" style="border-color:var(--p5m);background:var(--p5l);">
+      <div class="fml-name" style="color:var(--p5);">Accuracy</div>
+      <div class="fml-eq">(TP + TN) × 100 / Total</div>
+      <div class="fml-desc">Overall % correct. But misleading if classes are imbalanced!</div>
+    </div>
+    <div class="fml-card" style="border-color:var(--p5m);background:var(--p5l);">
+      <div class="fml-name" style="color:var(--p5);">Precision</div>
+      <div class="fml-eq">TP / (TP + FP)</div>
+      <div class="fml-desc">Of all we said YES, how many were actually YES? Avoids false alarms.</div>
+    </div>
+    <div class="fml-card" style="border-color:var(--p5m);background:var(--p5l);">
+      <div class="fml-name" style="color:var(--p5);">Recall (Sensitivity)</div>
+      <div class="fml-eq">TP / (TP + FN)</div>
+      <div class="fml-desc">Of all actual YES, how many did we catch? Avoids missing cases.</div>
+    </div>
+    <div class="fml-card" style="border-color:var(--p5m);background:var(--p5l);">
+      <div class="fml-name" style="color:var(--p5);">F1 Score</div>
+      <div class="fml-eq">2 × P × R / (P + R)</div>
+      <div class="fml-desc">Harmonic mean of Precision &amp; Recall. Best single metric overall.</div>
+    </div>
+    <div class="fml-card" style="border-color:var(--p5m);background:var(--p5l);">
+      <div class="fml-name" style="color:var(--p5);">Specificity</div>
+      <div class="fml-eq">TN / (TN + FP)</div>
+      <div class="fml-desc">Of all actual NO cases, how many did we correctly identify as NO?</div>
+    </div>
+  </div>
+
+  <div class="sec-header">
+    <span class="sec-badge" style="background:var(--p5l);color:var(--p5);">Part 1</span>
+    <span class="sec-title">Load Data &amp; Prepare Features</span>
+  </div>
+
+  <div class="why-box" style="background:var(--p5l);border-color:var(--p5m);">
+    <span class="why-icon">🧹</span>
+    <div class="why-content">
+      <strong style="color:var(--p5);">WHY ARE WE DROPPING 'Genre' AND SELECTING LAST COLUMN?</strong>
+      <p>The 'Genre' column is text (Male/Female) — we'd need to encode it separately, and the assignment skips it for simplicity. The <b>last column</b> in the dataset is the target variable (0 or 1 = will customer buy or not). All <b>other columns</b> are input features the model learns from.</p>
+    </div>
+  </div>
+
+  <div class="code-wrap">
+    <div class="code-top">
+      <div class="code-dots"><span style="background:#ff5f57"></span><span style="background:#ffbd2e"></span><span style="background:#28c840"></span></div>
+      <div class="code-purpose">🧹 PART 1 — Load, clean and split features from target</div>
+    </div>
+    <pre><span class="kw">import</span> pandas <span class="kw">as</span> pd, numpy <span class="kw">as</span> np
+<span class="kw">from</span> sklearn.model_selection <span class="kw">import</span> train_test_split
+<span class="kw">from</span> sklearn.linear_model <span class="kw">import</span> LogisticRegression
+<span class="kw">from</span> sklearn.metrics <span class="kw">import</span> confusion_matrix
+
+df = pd.<span class="fn">read_csv</span>(<span class="st">'data5.csv'</span>)
+
+df1 = df.<span class="fn">drop</span>(<span class="st">"Genre"</span>, axis=<span class="nm">1</span>)
+<span class="cm"># ↑ Remove the 'Genre' (gender) column because it's text</span>
+<span class="cm">#   and we're not encoding it in this assignment. axis=1 = drop column.</span>
+
+y = df1.<span class="fn">iloc</span>[:, <span class="nm">-1</span>].<span class="fn">values</span>
+<span class="cm"># ↑ iloc[:, -1] = ALL rows, LAST column = the target (0 or 1)</span>
+<span class="cm">#   .values = convert to NumPy array (required by sklearn)</span>
+
+X = df1.<span class="fn">iloc</span>[:, :<span class="nm">-1</span>].<span class="fn">values</span>
+<span class="cm"># ↑ iloc[:, :-1] = ALL rows, ALL columns EXCEPT the last = the features</span>
+<span class="cm">#   (Age, Annual Income, Spending Score — the inputs)</span></pre>
+  </div>
+  <div class="explain-table">
+    <div class="explain-row">
+      <div class="explain-code">df.drop("Genre", axis=1)</div>
+      <div class="explain-text"><span class="emoji">🗑️</span> Removes the Genre column. <b>axis=1</b> = remove a column (axis=0 would remove a row). The result is stored in df1 — the original df is unchanged.</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">df1.iloc[:, -1].values</div>
+      <div class="explain-text"><span class="emoji">🎯</span> <b>-1</b> means "the last column" (Python negative indexing). This is the target variable — what we're trying to predict (0=no purchase, 1=purchase). <b>.values</b> gives a plain NumPy array.</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">df1.iloc[:, :-1].values</div>
+      <div class="explain-text"><span class="emoji">📋</span> <b>:-1</b> means "all columns EXCEPT the last". So we get Age, Income, Spending Score as our feature matrix X. Everything the model uses as INPUT to make its prediction.</div>
+    </div>
+  </div>
+
+  <div class="sec-header">
+    <span class="sec-badge" style="background:var(--p5l);color:var(--p5);">Part 2</span>
+    <span class="sec-title">Train the Model</span>
+  </div>
+
+  <div class="code-wrap">
+    <div class="code-top">
+      <div class="code-dots"><span style="background:#ff5f57"></span><span style="background:#ffbd2e"></span><span style="background:#28c840"></span></div>
+      <div class="code-purpose">🎓 PART 2 — Split data and train Logistic Regression model</div>
+    </div>
+    <pre>X_train, X_test, y_train, y_test = <span class="fn">train_test_split</span>(
+    X, y, test_size=<span class="nm">0.25</span>, random_state=<span class="nm">2</span>
+)
+<span class="cm"># ↑ 75% training, 25% testing. random_state=2 = fixed split for reproducibility</span>
+
+LR = <span class="fn">LogisticRegression</span>()
+<span class="cm"># ↑ Create the Logistic Regression classifier object</span>
+<span class="cm">#   Internally uses SIGMOID FUNCTION: maps any number → probability between 0 and 1</span>
+<span class="cm">#   If probability &gt; 0.5 → predict class 1 (YES)</span>
+<span class="cm">#   If probability &lt;= 0.5 → predict class 0 (NO)</span>
+
+LR.<span class="fn">fit</span>(X_train, y_train)
+<span class="cm"># ↑ Training! Model learns the DECISION BOUNDARY that separates class 0 and class 1</span></pre>
+  </div>
+  <div class="explain-table">
+    <div class="explain-row">
+      <div class="explain-code">test_size=0.25, random_state=2</div>
+      <div class="explain-text"><span class="emoji">🔀</span> 25% of data is kept for testing (model never sees this during training). random_state=2 seeds the randomness — same split every time you run the code.</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">LogisticRegression()</div>
+      <div class="explain-text"><span class="emoji">🔮</span> Despite the name "regression", this is a <b>classifier</b>. It uses the sigmoid function to output a probability (0 to 1), then converts it to a class (0 or 1) using a 0.5 threshold. <b>Higher spending score + income → higher probability of purchase.</b></div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">LR.fit(X_train, y_train)</div>
+      <div class="explain-text"><span class="emoji">📚</span> This single line does all the learning. The model adjusts its internal weights to find the best <b>decision boundary</b> separating buyers (1) from non-buyers (0).</div>
+    </div>
+  </div>
+
+  <div class="sec-header">
+    <span class="sec-badge" style="background:var(--p5l);color:var(--p5);">Part 3</span>
+    <span class="sec-title">Confusion Matrix &amp; Calculate All 5 Metrics</span>
+  </div>
+
+  <div class="code-wrap">
+    <div class="code-top">
+      <div class="code-dots"><span style="background:#ff5f57"></span><span style="background:#ffbd2e"></span><span style="background:#28c840"></span></div>
+      <div class="code-purpose">📊 PART 3 — Evaluate model performance with confusion matrix + 5 metrics</div>
+    </div>
+    <pre>y_pred = LR.<span class="fn">predict</span>(X_test)
+<span class="cm"># ↑ Model predicts class (0 or 1) for each test sample</span>
+
+tn, fp, fn, tp = <span class="fn">confusion_matrix</span>(y_test, y_pred).<span class="fn">ravel</span>()
+<span class="cm"># ↑ confusion_matrix returns a 2×2 matrix:</span>
+<span class="cm">#   [[TN, FP],    ← actual NO rows</span>
+<span class="cm">#    [FN, TP]]    ← actual YES rows</span>
+<span class="cm"># .ravel() FLATTENS it to [TN, FP, FN, TP] — 4 variables in one line!</span>
+
+accuracy    = (tn + tp) * <span class="nm">100</span> / (tp + tn + fp + fn)
+precision   = tp / (tp + fp)
+recall      = tp / (tp + fn)
+f1_score    = (<span class="nm">2</span> * precision * recall) / (precision + recall)
+specificity = tn / (tn + fp)
+
+print(<span class="fn">f</span><span class="st">"Accuracy: {accuracy:.2f}%"</span>)     <span class="cm"># {:.2f} = show 2 decimal places</span>
+print(<span class="fn">f</span><span class="st">"Precision: {precision:.2f}"</span>)
+print(<span class="fn">f</span><span class="st">"Recall: {recall:.2f}"</span>)
+print(<span class="fn">f</span><span class="st">"F1 Score: {f1_score:.2f}"</span>)
+print(<span class="fn">f</span><span class="st">"Specificity: {specificity:.2f}"</span>)</pre>
+  </div>
+  <div class="explain-table">
+    <div class="explain-row">
+      <div class="explain-code">LR.predict(X_test)</div>
+      <div class="explain-text"><span class="emoji">🔮</span> The trained model looks at 25% test data it's never seen before and predicts 0 or 1 for each customer. Returns an array like [0, 1, 1, 0, 1, ...]</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">confusion_matrix(y_test, y_pred).ravel()</div>
+      <div class="explain-text"><span class="emoji">🗂️</span> Compares actual labels (y_test) with predicted labels (y_pred) and builds the 2×2 table. <b>.ravel()</b> flattens [TN,FP; FN,TP] into a single list so we can unpack into 4 variables.</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">(tn + tp) * 100 / (tp+tn+fp+fn)</div>
+      <div class="explain-text"><span class="emoji">✅</span> <b>Accuracy</b> = (all correct predictions) ÷ (all predictions) × 100. Our model gets 96% — meaning it correctly classifies 96 out of 100 customers!</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">tp / (tp + fp)</div>
+      <div class="explain-text"><span class="emoji">🎯</span> <b>Precision</b> = out of everyone the model said "YES (will buy)", how many ACTUALLY bought? High precision = fewer false alarms.</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">tp / (tp + fn)</div>
+      <div class="explain-text"><span class="emoji">🔍</span> <b>Recall</b> = out of all customers who ACTUALLY bought, how many did the model catch? High recall = fewer missed cases. Critical in medical diagnosis!</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">2 * precision * recall / (precision + recall)</div>
+      <div class="explain-text"><span class="emoji">⚖️</span> <b>F1 Score</b> = harmonic mean of precision and recall. Single number that balances both. If either P or R is very low, F1 will be low too. Best overall metric.</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">tn / (tn + fp)</div>
+      <div class="explain-text"><span class="emoji">🔒</span> <b>Specificity</b> = out of all actual NO customers, how many did the model correctly say NO? Our 0.98 means the model is excellent at identifying non-buyers!</div>
+    </div>
+  </div>
+
+  <div class="output">
+    <div class="output-lbl">📤 Actual Output from the Notebook</div>
+    Accuracy: 96.00%<br>
+    Precision: 0.75<br>
+    Recall: 0.75<br>
+    F1 Score: 0.75<br>
+    Specificity: 0.98
+  </div>
+
+  <div class="sec-header">
+    <span class="sec-badge" style="background:var(--p5l);color:var(--p5);">Part 4</span>
+    <span class="sec-title">Take User Input &amp; Predict</span>
+  </div>
+
+  <div class="why-box" style="background:var(--p5l);border-color:var(--p5m);">
+    <span class="why-icon">🙋</span>
+    <div class="why-content">
+      <strong style="color:var(--p5);">WHY IS THIS CODE HERE?</strong>
+      <p>This is the demo/interactive part — you type in feature values manually (like a new customer's age, income, spending score) and the model instantly predicts whether THAT customer will buy. It proves the model works on REAL new inputs, not just the test set.</p>
+    </div>
+  </div>
+
+  <div class="code-wrap">
+    <div class="code-top">
+      <div class="code-dots"><span style="background:#ff5f57"></span><span style="background:#ffbd2e"></span><span style="background:#28c840"></span></div>
+      <div class="code-purpose">🙋 PART 4 — Let user type feature values, then predict class</div>
+    </div>
+    <pre>input_features = []
+<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(X_train.shape[<span class="nm">1</span>]):
+<span class="cm">    # X_train.shape[1] = number of features (columns) = 3 in this case</span>
+<span class="cm">    # Loop runs 3 times: once for each feature</span>
+    val = <span class="fn">float</span>(<span class="fn">input</span>(<span class="fn">f</span><span class="st">"Feature {i+1}: "</span>))
+<span class="cm">    # input() pauses and waits for user to type a value</span>
+<span class="cm">    # float() converts the typed string to a decimal number</span>
+    input_features.<span class="fn">append</span>(val)
+
+input_array = np.<span class="fn">array</span>(input_features).<span class="fn">reshape</span>(<span class="nm">1</span>, <span class="nm">-1</span>)
+<span class="cm"># np.array([2, 12, 45000]) → a 1D array</span>
+<span class="cm"># .reshape(1, -1) → converts to 2D: [[2, 12, 45000]]</span>
+<span class="cm"># sklearn's predict() needs 2D input (matrix, not a list)</span>
+
+prediction = LR.<span class="fn">predict</span>(input_array)[<span class="nm">0</span>]
+<span class="cm"># .predict() returns an array like [0] or [1]</span>
+<span class="cm"># [0] extracts the first (and only) element from that array</span>
+
+print(<span class="fn">f</span><span class="st">"Predicted Output: {prediction}"</span>)
+<span class="cm"># Output: 0 = customer will NOT buy, 1 = customer WILL buy</span></pre>
+  </div>
+  <div class="explain-table">
+    <div class="explain-row">
+      <div class="explain-code">X_train.shape[1]</div>
+      <div class="explain-text"><span class="emoji">📐</span> <b>.shape</b> returns (rows, columns). <b>[1]</b> = columns = number of features. We loop this many times so the user enters one value per feature. No hardcoding!</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">float(input(...))</div>
+      <div class="explain-text"><span class="emoji">⌨️</span> <b>input()</b> = pause and wait for keyboard input. It always returns a <b>string</b>. <b>float()</b> converts that string "45000" into the number 45000.0 that the model can use.</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">np.array(...).reshape(1, -1)</div>
+      <div class="explain-text"><span class="emoji">🔄</span> The user inputs are a 1D list [2, 12, 45000]. sklearn's predict() needs a <b>2D matrix</b>. <b>reshape(1, -1)</b> = "make it 1 row, and figure out the columns automatically (-1)". Result: [[2, 12, 45000]].</div>
+    </div>
+    <div class="explain-row">
+      <div class="explain-code">LR.predict(input_array)[0]</div>
+      <div class="explain-text"><span class="emoji">🎯</span> predict() always returns an <b>array</b> (even for one input). Since we only input one customer, we get [0] or [1]. The <b>[0]</b> at the end extracts just the prediction value.</div>
+    </div>
+  </div>
+
+</section>
+<hr class="divider">
+
+
+<!-- ══════════════════════════════════════════════════════
+     CHEATSHEET
+══════════════════════════════════════════════════════ -->
+<section id="cheatsheet" style="scroll-margin-top:20px;">
+  <div class="sec-header">
+    <span class="sec-badge" style="background:#f1f5f9;color:#475569;">⚡ Quick Ref</span>
+    <span class="sec-title">Last-minute Cheatsheet — Most Common Functions</span>
+  </div>
+  <div class="cheat-grid">
+    <div class="cheat-card"><div class="cheat-fn">pd.read_csv("file.csv")</div><div class="cheat-desc">Load a CSV file into a DataFrame</div></div>
+    <div class="cheat-card"><div class="cheat-fn">df.dtypes</div><div class="cheat-desc">Show data type of each column</div></div>
+    <div class="cheat-card"><div class="cheat-fn">df['col'].astype("int")</div><div class="cheat-desc">Convert column type (float→int)</div></div>
+    <div class="cheat-card"><div class="cheat-fn">df.isnull().sum()</div><div class="cheat-desc">Count missing values per column</div></div>
+    <div class="cheat-card"><div class="cheat-fn">df['col'].fillna(val, inplace=True)</div><div class="cheat-desc">Fill NaN with a value (mean/median/etc)</div></div>
+    <div class="cheat-card"><div class="cheat-fn">MinMaxScaler().fit_transform(x)</div><div class="cheat-desc">Normalize columns to [0, 1]</div></div>
+    <div class="cheat-card"><div class="cheat-fn">LabelEncoder().fit_transform(col)</div><div class="cheat-desc">Convert text categories → numbers</div></div>
+    <div class="cheat-card"><div class="cheat-fn">OneHotEncoder().fit_transform(x).toarray()</div><div class="cheat-desc">Create binary columns per category</div></div>
+    <div class="cheat-card"><div class="cheat-fn">df.mean() / .median() / .mode()</div><div class="cheat-desc">Compute central tendency stats</div></div>
+    <div class="cheat-card"><div class="cheat-fn">df.std() / .min() / .max()</div><div class="cheat-desc">Spread and extreme values</div></div>
+    <div class="cheat-card"><div class="cheat-fn">df.groupby(['col'])['col2'].mean()</div><div class="cheat-desc">Average of col2 per group in col</div></div>
+    <div class="cheat-card"><div class="cheat-fn">df.describe()</div><div class="cheat-desc">All stats at once: count, mean, std, min, quartiles, max</div></div>
+    <div class="cheat-card"><div class="cheat-fn">df.iloc[:, :-1].values</div><div class="cheat-desc">All rows, all columns except last (features X)</div></div>
+    <div class="cheat-card"><div class="cheat-fn">df.iloc[:, -1].values</div><div class="cheat-desc">All rows, only last column (target y)</div></div>
+    <div class="cheat-card"><div class="cheat-fn">train_test_split(X, y, test_size=0.25)</div><div class="cheat-desc">Split into 75% train, 25% test</div></div>
+    <div class="cheat-card"><div class="cheat-fn">model.fit(X_train, y_train)</div><div class="cheat-desc">Train (learn) from training data</div></div>
+    <div class="cheat-card"><div class="cheat-fn">model.predict(X_test)</div><div class="cheat-desc">Predict output for test data</div></div>
+    <div class="cheat-card"><div class="cheat-fn">confusion_matrix(y, y_pred).ravel()</div><div class="cheat-desc">Get TN, FP, FN, TP as 4 variables</div></div>
+    <div class="cheat-card"><div class="cheat-fn">r2_score(y, y_pred)</div><div class="cheat-desc">R² score (how good is regression line)</div></div>
+    <div class="cheat-card"><div class="cheat-fn">mean_squared_error(y, y_pred)</div><div class="cheat-desc">MSE — average squared prediction error</div></div>
+    <div class="cheat-card"><div class="cheat-fn">np.polyfit(x, y, 1)</div><div class="cheat-desc">Fit a straight line, returns [slope, intercept]</div></div>
+    <div class="cheat-card"><div class="cheat-fn">arr.reshape(1, -1)</div><div class="cheat-desc">Convert 1D array to 2D (1 row, N cols)</div></div>
+    <div class="cheat-card"><div class="cheat-fn">df.drop('col', axis=1)</div><div class="cheat-desc">Remove a column (axis=1) from DataFrame</div></div>
+    <div class="cheat-card"><div class="cheat-fn">pd.concat([df1, df2], axis=1)</div><div class="cheat-desc">Join two DataFrames side by side (columns)</div></div>
+  </div>
+
+  <div style="text-align:center;padding:40px 0 20px;">
+    <div style="font-size:2rem;margin-bottom:10px;">🎯</div>
+    <div style="font-size:1.2rem;font-weight:900;color:var(--text);">You've got this! All the best for your practical! 🚀</div>
+    <div style="font-size:0.95rem;color:var(--muted);font-weight:600;margin-top:6px;">Remember: Understand the WHY behind each code block — not just what it does.</div>
+  </div>
+</section>
+
+</main>
+</div>
+
+<script>
+// Active nav on scroll
+const sections = document.querySelectorAll('section[id]');
+const links = document.querySelectorAll('.nav-link');
+const colors = { p1:'#4361ee', p2:'#7c3aed', p3:'#059669', p4:'#d97706', p5:'#db2777', cheatsheet:'#475569' };
+
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => { if(window.scrollY >= s.offsetTop - 80) cur = s.id; });
+  links.forEach(l => {
+    const id = l.getAttribute('href').replace('#','');
+    l.classList.remove('active');
+    l.style.background = '';
+    l.style.color = '';
+    if(id === cur) {
+      l.classList.add('active');
+      l.style.background = colors[id] || '#475569';
+      l.style.color = '#fff';
+    }
+  });
+});
+</script>
+</body>
+</html>
